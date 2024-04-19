@@ -87,6 +87,26 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      persistentFooterButtons: [
+        ElevatedButton(
+          onPressed: (){
+            _incrementCounter();
+            },
+          child: const Icon(Icons.add)
+        ),
+        ElevatedButton(
+          onPressed: (){
+            _decrementCounter();
+          },
+          child: const Icon(Icons.remove)
+        ),
+        ElevatedButton(
+          onPressed: (){
+            _resetCounter();
+          },
+          child: const Icon(Icons.reset_tv)
+        )
+      ],
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
@@ -122,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ElevatedButton(
+            /*ElevatedButton(
               onPressed: (){
                 _incrementCounter();
               },
@@ -139,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 _resetCounter();
               },
               child: const Icon(Icons.reset_tv)
-            ),
+            ),*/
           ],
         ),
       ),
