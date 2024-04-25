@@ -23,19 +23,17 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 
-
-
 flutter:
 
   
   uses-material-design: true
 
   
-assets:
-  - assets/icons/
+  assets:
+    - assets/icons/
   
-fonts:
-  - family: Custom
-    fonts:
-      - asset: assets/fonts/Monofur/
-        styles: 
+  fonts:
+    - family: Custom
+      fonts:
+        - asset: fonts/DMC5Font.otf
+          weight: 800
