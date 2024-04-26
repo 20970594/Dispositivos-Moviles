@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Primer test de flutter por José Castillos'),
+      home: const MyHomePage(title: 'App flutter'),
     );
   }
 }
