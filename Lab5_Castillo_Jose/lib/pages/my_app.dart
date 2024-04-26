@@ -72,17 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 600,
           child: Card(
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                       height: 100,
-                      child: Opacity(opacity: _alphaIcon,
-                              child: SvgPicture.asset(_iconPath,width: 50,)
-                            )
+                      child: 
+                      Opacity(opacity: _alphaIcon,
+                        child: SvgPicture.asset(_iconPath,width: 50,)
+                      )
                     )
                   ],
                 ),
@@ -92,45 +92,46 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 
                 Container(
-                  margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   height: 100,
-                  child: Opacity(
-                          opacity: _alphaMessage,
-                          child: Text(_message, style: Theme.of(context).textTheme.headlineLarge,),
-                        ),
+                  child: 
+                  Opacity(
+                    opacity: _alphaMessage,
+                    child: Text(_message, style: Theme.of(context).textTheme.headlineLarge,),
+                  ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   height: 200,
-                  child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              onPressed: (){
-                                _incrementCounter();
-                                },
-                              child: const Icon(Icons.add)
-                            ),
-                            Opacity(opacity: _alphaResetButton,
-                              child: ElevatedButton(
-                                onPressed: (){
-                                  if(_counter>=10){
-                                    _resetCounter();
-                                  }
-                                },
-                                child: SvgPicture.asset('/icons/restart.svg',width: 20,)
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (){
-                                _decrementCounter();
-                              },
-                              child: const Icon(Icons.remove)
-                            ),
-                          ],
+                  child: 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: (){
+                          _incrementCounter();
+                          },
+                        child: const Icon(Icons.add)
+                      ),
+                      Opacity(opacity: _alphaResetButton,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            if(_counter>=10){
+                              _resetCounter();
+                            }
+                          },
+                          child: SvgPicture.asset('/icons/restart.svg',width: 20,)
                         ),
+                      ),
+                      ElevatedButton(
+                        onPressed: (){
+                          _decrementCounter();
+                        },
+                        child: const Icon(Icons.remove)
+                      ),
+                    ],
+                  ),
                 ),
-                
               ],
             ),
           ),
