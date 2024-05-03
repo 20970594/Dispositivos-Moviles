@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'App flutter'),
+      home: const MyHomePage(title: 'Juego de botones'),
     );
   }
 }
@@ -30,7 +29,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  double _alphaResetButton = 0;
+  double _alphaMessage = 0;
+  double _alphaIcon = 0;
+  String _iconPath = '/icons/loser.svg';
+  String _message = 'Derrota';
+  
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -46,58 +50,93 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter=0;
     });
   }
-
   @override
   Widget build(BuildContext context) {
-  
+  if(_counter>=10){_alphaResetButton = 1; _alphaMessage=1;}
+  else{_alphaResetButton = 0; _alphaMessage=0;}
+
+  if(_counter>=10&&_counter<15){_alphaIcon = 1; _iconPath = '/icons/loser.svg'; _message='Derrota';}
+  else if(_counter>=15){_iconPath = '/icons/winner.svg'; _message='Victoria';}
+  else{_alphaIcon = 0;}
+
     return Scaffold(
-      persistentFooterButtons: [
-        ElevatedButton(
-          onPressed: (){
-            _incrementCounter();
-            },
-          //child: const Icon(Icons.add)
-          child: const Icon(Icons.abc)
-        ),
-        ElevatedButton(
-          onPressed: (){
-            _decrementCounter();
-          },
-          child: const Icon(Icons.remove)
-        ),
-        ElevatedButton(
-          onPressed: (){
-            _resetCounter();
-          },
-          child: SvgPicture.asset('/icons/star.svg',width: 20,)
-        )
-      ],
       appBar: AppBar(
+        
         backgroundColor: Colors.amber,
         
-        title: Text(widget.title),
+        title: Text(widget.title,),
       ),
       body: Center(
-        
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Has presionado este botón esta cantidad de veces:',
+        child:Container(
+          margin: const EdgeInsets.fromLTRB(30, 100, 30, 30),
+          height: 600,
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      height: 100,
+                      child: 
+                      Opacity(opacity: _alphaIcon,
+                        child: SvgPicture.asset(_iconPath,width: 50,)
+                      )
+                    )
+                  ],
+                ),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  height: 100,
+                  child: 
+                  Opacity(
+                    opacity: _alphaMessage,
+                    child: Text(_message, style: Theme.of(context).textTheme.headlineLarge,),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  height: 200,
+                  child: 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: (){
+                          _incrementCounter();
+                          },
+                        child: const Icon(Icons.add)
+                      ),
+                      Opacity(opacity: _alphaResetButton,
+                        child: ElevatedButton(
+                          onPressed: (){
+                            if(_counter>=10){
+                              _resetCounter();
+                            }
+                          },
+                          child: SvgPicture.asset('/icons/restart.svg',width: 20,)
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: (){
+                          _decrementCounter();
+                        },
+                        child: const Icon(Icons.remove)
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.access_alarm),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
