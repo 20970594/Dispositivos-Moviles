@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 10;
   double _alphaResetButton = 0;
   double _alphaMessage = 0;
   double _alphaIcon = 0;
@@ -60,6 +60,20 @@ class _MyHomePageState extends State<MyHomePage> {
   else{_alphaIcon = 0;}
 
     return Scaffold(
+      persistentFooterButtons: [
+        ElevatedButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>const Detail()));
+            },
+          child: const Text("Detalles"),
+        ),
+        ElevatedButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
+            },
+          child: const Text("Lista"),
+        ),
+      ],
       appBar: AppBar(
         
         backgroundColor: Colors.amber,
@@ -67,18 +81,18 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title,),
       ),
       body: Center(
-        child:Container(
-          margin: const EdgeInsets.fromLTRB(30, 100, 30, 30),
-          height: 600,
+        child: SizedBox(
+          width: 400,
+          height: 500,
           child: Card(
             child: Column(
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                      height: 100,
+                    SizedBox(
+                    width: 50,
+                    height: 100,
                       child: 
                       Opacity(opacity: _alphaIcon,
                         child: SvgPicture.asset(_iconPath,width: 50,)
@@ -91,18 +105,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  height: 100,
+                SizedBox(
+                  width: 85,
+                  height: 35,
                   child: 
                   Opacity(
                     opacity: _alphaMessage,
                     child: Text(_message, style: Theme.of(context).textTheme.headlineLarge,),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  height: 200,
+                SizedBox(
+                  width: 300,
+                  height: 300,
                   child: 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -137,6 +151,78 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Detail extends StatelessWidget {
+  const Detail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Details'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(
+              width: 80,
+              height: 150,
+              child: Text("Detalles",textScaler: TextScaler.linear(2),),
+            ),
+            SizedBox(
+              width: 120,
+              height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Atras',textScaler: TextScaler.linear(1.5)),
+              ),
+            ),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+class ListDetail extends StatelessWidget {
+  const ListDetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Route'),
+      ),
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Atras',textScaler: TextScaler.linear(1.5)),
+            ),
+            const ListTile(
+              leading: Icon(Icons.map),
+              title: Text('Map'),
+            ),
+            const ListTile(
+              leading: Icon(Icons.photo_album),
+              title: Text('Album'),
+            ),
+            const ListTile(
+              leading: Icon(Icons.phone),
+              title: Text('Phone'),
+            ),
+          ],
+        )
+      )
     );
   }
 }
