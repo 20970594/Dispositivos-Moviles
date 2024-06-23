@@ -193,8 +193,13 @@ class Detail extends StatelessWidget {
 class ListDetail extends StatelessWidget {
   const ListDetail({super.key});
 
+  
   @override
   Widget build(BuildContext context) {
+    final ItemList = List<ListTile>.filled(3, ListTile(leading: Icon(Icons.map)));
+    ItemList[0] = ListTile(leading: Icon(Icons.map),title: Text('Map'),);
+    ItemList[1] = ListTile(leading: Icon(Icons.photo_album),title: Text('Album'),);
+    ItemList[2] = ListTile(leading: Icon(Icons.phone),title: Text('Phone'),);
     return Scaffold(
       appBar: AppBar(
         title: const Text('List Details'),
@@ -208,18 +213,9 @@ class ListDetail extends StatelessWidget {
               },
               child: const Text('Atras',textScaler: TextScaler.linear(1.5)),
             ),
-            const ListTile(
-              leading: Icon(Icons.map),
-              title: Text('Map'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.photo_album),
-              title: Text('Album'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.phone),
-              title: Text('Phone'),
-            ),
+            ItemList[0],
+            ItemList[1],
+            ItemList[2]
           ],
         )
       )
