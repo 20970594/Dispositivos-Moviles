@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,14 +22,54 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    print("create state");
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+@override
+  void initState() {
+    print('initState(), mounted: $mounted');
+    _counter = 10;
+
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('didChangeDependencies()');
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    print('didUpdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate()');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('dispose()');
+    super.dispose();
+  }
+
+  @override
+  void reassemble() {
+    print('reassemble()');
+    super.reassemble();
+  }
+
   int _counter = 10;
   double _alphaResetButton = 0;
   double _alphaMessage = 0;
@@ -37,21 +79,27 @@ class _MyHomePageState extends State<MyHomePage> {
   
   void _incrementCounter() {
     setState(() {
+      print('setState +');
       _counter++;
     });
   }
   void _decrementCounter() {
     setState(() {
+      print('setState -');
       _counter--;
     });
   }
   void _resetCounter() {
     setState(() {
+      print('setState R');
       _counter=0;
     });
   }
   @override
   Widget build(BuildContext context) {
+
+  print("build() called");
+
   if(_counter>=10){_alphaResetButton = 1; _alphaMessage=1;}
   else{_alphaResetButton = 0; _alphaMessage=0;}
 
