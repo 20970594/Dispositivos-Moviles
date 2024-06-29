@@ -246,6 +246,15 @@ class Detail extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              child: ListTile(
+              title: const Text('Home'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+              decoration: BoxDecoration(color: Colors.amber)
+            ),
             ListTile(
               title: const Text('Details'),
               onTap: (){
@@ -303,6 +312,15 @@ class ListDetail extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              child: ListTile(
+              title: const Text('Home'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+              decoration: BoxDecoration(color: Colors.amber)
+            ),
             ListTile(
               title: const Text('Details'),
               onTap: (){
@@ -356,6 +374,15 @@ class Sensors extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              child: ListTile(
+              title: const Text('Home'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+              decoration: BoxDecoration(color: Colors.amber)
+            ),
             ListTile(
               title: const Text('Details'),
               onTap: (){
@@ -403,6 +430,15 @@ class Gestures extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              child: ListTile(
+              title: const Text('Home'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+              decoration: BoxDecoration(color: Colors.amber)
+            ),
             ListTile(
               title: const Text('Details'),
               onTap: (){
