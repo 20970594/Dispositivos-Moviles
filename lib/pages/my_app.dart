@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double _alphaResetButton = 0;
   double _alphaMessage = 0;
   double _alphaIcon = 0;
-  String _iconPath = '/icons/loser.svg';
+  String _iconPath = 'assets/icons/loser.svg';
   String _message = 'Derrota';
   
   void _incrementCounter() {
@@ -95,6 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter=0;
     });
   }
+
+  void nextPage(){
+
+  }
+
+  
   @override
   Widget build(BuildContext context) {
 
@@ -103,30 +109,55 @@ class _MyHomePageState extends State<MyHomePage> {
   if(_counter>=10){_alphaResetButton = 1; _alphaMessage=1;}
   else{_alphaResetButton = 0; _alphaMessage=0;}
 
-  if(_counter>=10&&_counter<15){_alphaIcon = 1; _iconPath = '/icons/loser.svg'; _message='Derrota';}
-  else if(_counter>=15){_iconPath = '/icons/winner.svg'; _message='Victoria';}
+  if(_counter>=10&&_counter<15){_alphaIcon = 1; _iconPath = 'assets/icons/loser.svg'; _message='Derrota';}
+  else if(_counter>=15){_iconPath = 'assets/icons/winner.svg'; _message='Victoria';}
   else{_alphaIcon = 0;}
 
     return Scaffold(
-      persistentFooterButtons: [
-        ElevatedButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>const Detail()));
-            },
-          child: const Text("Detalles"),
-        ),
-        ElevatedButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
-            },
-          child: const Text("Lista"),
-        ),
-      ],
       appBar: AppBar(
         
         backgroundColor: Colors.amber,
         
         title: Text(widget.title,),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: ListTile(
+              title: const Text('Home'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+              decoration: BoxDecoration(color: Colors.amber)
+            ),
+            ListTile(
+              title: const Text('Details'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Detail()));
+              },
+            ),
+            ListTile(
+              title: const Text('List'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
+              },
+            ),
+            ListTile(
+              title: const Text('Sensors'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Sensors()));
+              },
+            ),
+            ListTile(
+              title: const Text('Gestures'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Gestures()));
+              },
+            )
+          ],
+        ),
       ),
       body: Center(
         child: SizedBox(
@@ -182,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               _resetCounter();
                             }
                           },
-                          child: SvgPicture.asset('/icons/restart.svg',width: 20,)
+                          child: SvgPicture.asset('assets/icons/restart.svg',width: 20,)
                         ),
                       ),
                       ElevatedButton(
@@ -212,25 +243,42 @@ class Detail extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Details'),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Details'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const MyApp())));
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('List'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
+              },
+            ),
+            ListTile(
+              title: const Text('Sensors'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Sensors()));
+              },
+            ),
+            ListTile(
+              title: const Text('Gestures'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Gestures()));
+              },
+            )
+          ],
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(
-              width: 80,
-              height: 150,
-              child: Text("Detalles",textScaler: TextScaler.linear(2),),
-            ),
-            SizedBox(
-              width: 120,
-              height: 35,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Atras',textScaler: TextScaler.linear(1.5)),
-              ),
-            ),
           ],
         )
       ),
@@ -244,28 +292,146 @@ class ListDetail extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final ItemList = List<ListTile>.filled(3, ListTile(leading: Icon(Icons.map)));
-    ItemList[0] = ListTile(leading: Icon(Icons.map),title: Text('Map'),);
-    ItemList[1] = ListTile(leading: Icon(Icons.photo_album),title: Text('Album'),);
-    ItemList[2] = ListTile(leading: Icon(Icons.phone),title: Text('Phone'),);
+    final ItemList = List<ListTile>.filled(3, const ListTile(leading: Icon(Icons.map)));
+    ItemList[0] = const ListTile(leading: Icon(Icons.map),title: Text('Map'),);
+    ItemList[1] = const ListTile(leading: Icon(Icons.photo_album),title: Text('Album'),);
+    ItemList[2] = const ListTile(leading: Icon(Icons.phone),title: Text('Phone'),);
     return Scaffold(
       appBar: AppBar(
         title: const Text('List Details'),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Details'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const Detail())));
+              },
+            ),
+            ListTile(
+              title: const Text('List'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+            ListTile(
+              title: const Text('Sensors'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Sensors()));
+              },
+            ),
+            ListTile(
+              title: const Text('Gestures'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Gestures()));
+              },
+            )
+          ],
+        ),
+      ),
       body: Center(
         child: ListView(
           children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Atras',textScaler: TextScaler.linear(1.5)),
-            ),
             ItemList[0],
             ItemList[1],
             ItemList[2]
           ],
         )
+      )
+    );
+  }
+}
+
+class Sensors extends StatelessWidget {
+  const Sensors({super.key});
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sensors'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Details'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const Detail())));
+              },
+            ),
+            ListTile(
+              title: const Text('List'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
+              },
+            ),
+            ListTile(
+              title: const Text('Sensors'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            ),
+            ListTile(
+              title: const Text('Gestures'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Gestures()));
+              },
+            )
+          ],
+        ),
+      ),
+      body: const Center(
+        
+      )
+    );
+  }
+}
+
+class Gestures extends StatelessWidget {
+  const Gestures({super.key});
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Gestures'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Details'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const Detail())));
+              },
+            ),
+            ListTile(
+              title: const Text('List'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ListDetail()));
+              },
+            ),
+            ListTile(
+              title: const Text('Sensors'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Sensors()));
+              },
+            ),
+            ListTile(
+              title: const Text('Gestures'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyApp()));
+              },
+            )
+          ],
+        ),
+      ),
+      body: const Center(
+        
       )
     );
   }

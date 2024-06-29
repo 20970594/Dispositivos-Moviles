@@ -30,7 +30,9 @@ flutter:
 
   
   assets:
+    - assets/
     - assets/icons/
+    - assets/icons/loser.svg
   
   fonts:
     - family: Custom
